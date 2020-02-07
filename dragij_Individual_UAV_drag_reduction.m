@@ -30,63 +30,71 @@ function  flock_size_drag_fun(a,s,b,N,d_11 , v , dist , init_power)
 
 
          for k = 1:N
-                [ d_array] = tmp_drag_fun(a,s,b,N,d_11,v,dist,init_power);   
+            [ d_array] = tmp_drag_fun(a,s,b,N,d_11,v,dist,init_power);   
 
-              x=1:N;
+            x=1:N;
             plot(x,d_array,'-o')
             hold on
             title('Individual UAV drag reduction')
-                xlabel('Flock size') 
-                ylabel('Drag value')
+            xlabel('Flock size') 
+            ylabel('Drag value')
 
         end
+        
         figure
-         hold on
+        hold on
 
         for k = 1:N
-                [ d_array] = tmp_drag_fun(a,s,b,N,d_11,v,dist,init_power);   
+              [ d_array] = tmp_drag_fun(a,s,b,N,d_11,v,dist,init_power);   
 
               x=1:N;
               p_total = d_array .* v ;
-            plot(x,p_total,'-o')
-            title('Consumed power')
-                xlabel('Flock size') 
-                ylabel('power')
+              plot(x,p_total,'-o')
+              title('Consumed power')
+              xlabel('Flock size') 
+              ylabel('power')
 
         end
+        hold off
+        
+        
+        
         figure
-         hold on
+        hold on
          
          for k = 1:N
-                [ d_array] = tmp_drag_fun(a,s,b,k,d_11,v,dist,init_power);   
+              [ d_array] = tmp_drag_fun(a,s,b,k,d_11,v,dist,init_power);   
 
               x=1:k;
               p_total = d_array .* v ;
               p_remind = init_power - p_total;
-            plot(x,p_remind,'-o')
-            title('Remined power')
-                xlabel('Flock size') 
-                ylabel('Power')
+              plot(x,p_remind,'-o')
+              title('Remined power')
+              xlabel('Flock size') 
+              ylabel('Power')
 
-         end
+        end
+        hold off
+        
+        
         
          
-          figure
+         figure
          hold on
          
          for k = 1:N
-                [ d_array] = tmp_drag_fun(a,s,b,k,d_11,v,dist,init_power);   
+              [ d_array] = tmp_drag_fun(a,s,b,k,d_11,v,dist,init_power);   
 
               x=1:k;
               Energy_consumed = d_array * dist;
               
-            plot(x,Energy_consumed,'-o')
-            title('Energy consumed')
-                xlabel('Flock size') 
-                ylabel('Energy')
+              plot(x,Energy_consumed,'-o')
+              title('Energy consumed')
+              xlabel('Flock size') 
+              ylabel('Energy')
 
          end
-         
+         hold off
 
 end
 
@@ -99,7 +107,7 @@ function [ d_array]= tmp_drag_fun(a,s,b,N,d_11, v , dist,init_power)
 
     for i = 1:N
         d_array(i) = drag_fun(a,s,b,i,N,d_11) ; 
-%          d_array(i) =  d_array(i) + i * d_11;
+%        d_array(i) =  d_array(i) + i * d_11;
     end
 
     
